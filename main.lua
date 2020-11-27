@@ -10,9 +10,10 @@ function love.load()
   require("src/player")
   require("src/asteroid")
   
+  running = true
   love.graphics.setBackgroundColor(0, 0, 0)
   
-  sheep = Player(100, 100, "assets/sheep.png")
+  player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT-100, "assets/sheep.png")
   
   asteroids = {}
   
@@ -21,27 +22,35 @@ function love.load()
 end
 
 function love.update(dt)
-  sheep:update(dt)
+  player:update(dt)
   
   for i,a in ipairs(asteroids) do
     a:update(dt)
+    if a.destroyable then table.remove(asteroids, i) end
+    
+    if (collision(player, a)) then 
+      love.timer.sleep(0.5)
+      running = false
+    end
   end
   
   asteroidSpawnTimer = asteroidSpawnTimer + dt
   if asteroidSpawnTimer > asteroidSpawnInterval then
     table.insert(asteroids, spawnAsteroid())
     asteroidSpawnTimer = 0
-  end
+  end  
 end
 
 function love.draw()
-  sheep:draw()
-  
-  for i,a in ipairs(asteroids) do
-    a:draw()
+  if running then
+    player:draw()
+    
+    for i,a in ipairs(asteroids) do
+      a:draw()
+    end
+  else
+    draw_splash()
   end
-  
-  draw_splash()
 end
 
 function love.keypressed(key)
@@ -52,7 +61,14 @@ function love.keypressed(key)
 end
 
 function draw_splash()    
-  love.graphics.print("Moonshot", 0, 0)
+  love.graphics.print("Moonshot", SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
+end
+
+function collision(r1, r2)
+  return r1.x < r2.x + r2.width 
+    and r1.x + r1.width > r2.x 
+    and r1.y < r2.y + r2.height 
+    and r1.y + r1.height > r2.y
 end
 
 -- you're shooting yourself out of a cannon at the moon!

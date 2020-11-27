@@ -16,10 +16,3 @@ end
 function Player:draw()  
   love.graphics.draw(self.image, self.x, self.y, 0, 1, 1, self.width / 2, self.height / 2)
 end
-
-function collision(r1, r2)
-  return r1.x < r2.x + r2.width 
-    and r1.x + r1.width > r2.x 
-    and r1.y < r2.y + r2.height 
-    and r1.y + r1.height > r2.y
-end

@@ -3,65 +3,48 @@ io.stdout:setvbuf("no")
 SCREEN_WIDTH = love.graphics.getWidth()
 SCREEN_HEIGHT = love.graphics.getHeight()
 
+-- you're shooting yourself out of a cannon at the moon!
+-- you're going straight up
+-- asteroids and other space ships are in your way/floating around/hurtling towards you
+-- button makes you dodge 
+
 function love.load()
   love.math.setRandomSeed(love.timer.getTime())
 
   Object = require("libs/classic")
+  require("src/menu")
+  require("src/game")
+  require("src/game_over")
   require("src/player")
   require("src/asteroid")
   
-  running = true
-  love.graphics.setBackgroundColor(0, 0, 0)
+  love.graphics.setBackgroundColor(0, 0, 0)  
   
-  player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT-100, "assets/sheep.png")
-  
-  asteroids = {}
-  
-  asteroidSpawnTimer = 0
-  asteroidSpawnInterval = 1
+  startMenu()
 end
 
-function love.update(dt)
-  player:update(dt)
+function startMenu()
+  menu.init()
   
-  for i,a in ipairs(asteroids) do
-    a:update(dt)
-    if a.destroyable then table.remove(asteroids, i) end
-    
-    if (collision(player, a)) then 
-      love.timer.sleep(0.5)
-      running = false
-    end
-  end
+  love.update = menu.update
+  love.draw = menu.draw
+  love.keypressed = menu.keypressed
+end
   
-  asteroidSpawnTimer = asteroidSpawnTimer + dt
-  if asteroidSpawnTimer > asteroidSpawnInterval then
-    table.insert(asteroids, spawnAsteroid())
-    asteroidSpawnTimer = 0
-  end  
+function startGame()
+  game.init()
+  
+  love.update = game.update
+  love.draw = game.draw
+  love.keypressed = game.keypressed
 end
 
-function love.draw()
-  if running then
-    player:draw()
-    
-    for i,a in ipairs(asteroids) do
-      a:draw()
-    end
-  else
-    draw_splash()
-  end
-end
-
-function love.keypressed(key)
-  if key == "space" then
-  elseif key == "escape" then
-    love.event.quit(0)
-  end
-end
-
-function draw_splash()    
-  love.graphics.print("Moonshot", SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
+function startGameOver()
+  game_over.init()
+  
+  love.update = game_over.update
+  love.draw = game_over.draw
+  love.keypressed = game_over.keypressed
 end
 
 function collision(r1, r2)
@@ -70,8 +53,3 @@ function collision(r1, r2)
     and r1.y < r2.y + r2.height 
     and r1.y + r1.height > r2.y
 end
-
--- you're shooting yourself out of a cannon at the moon!
--- you're going straight up
--- asteroids and other space ships are in your way/floating around/hurtling towards you
--- button makes you dodge 

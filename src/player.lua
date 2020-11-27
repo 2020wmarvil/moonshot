@@ -3,7 +3,7 @@ Player = Object:extend()
 function Player:new(x, y, image)
   self.x = x
   self.y = y
-  self.image = love.graphics.newImage("assets/sheep.png")
+  self.image = love.graphics.newImage(image)
   self.width = self.image:getWidth()
   self.height = self.image:getHeight()
   self.speedX = 100

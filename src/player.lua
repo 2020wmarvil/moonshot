@@ -7,6 +7,7 @@ function Player:new(channel)
   self.image = love.graphics.newImage("assets/player.png")
   self.width = self.image:getWidth()
   self.height = self.image:getHeight()
+  self.x = self.x - self.width / 2
   self.speed = self.width
   
   self.bb = {}
@@ -25,11 +26,12 @@ function Player:draw()
 end
 
 function Player:dodge(dir)
+  dir = 1
   self.channel = self.channel + dir
   if self.channel == 0 then self.channel = 2 end
-  if self.channel == channels then self.channel = channels - 2 end
+  if self.channel > channels then self.channel = channels - 1 end
   
-  self.x = self.channel * channel_width
+  self.x = self.channel * channel_width - self.width / 2
   
   self.bb.x1 = self.x - self.width / 2
   self.bb.x2 = self.x + self.height / 2

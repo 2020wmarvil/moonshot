@@ -18,7 +18,10 @@ function love.load()
   require("src/player")
   require("src/asteroid")
   
-  love.graphics.setBackgroundColor(0, 0, 0)  
+  love.graphics.setBackgroundColor(0, 0, 0)
+  
+  channels = 11
+  channel_width = SCREEN_WIDTH / channels
   
   startMenu()
 end

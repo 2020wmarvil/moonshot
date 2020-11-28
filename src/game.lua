@@ -1,14 +1,14 @@
 game = {}
 
 function game.init()  
-  player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT-100, "assets/sheep.png")
+  player = Player(6)
   
   asteroids = {}
   
   asteroidSpawnTimer = 0.5
   asteroidSpawnInterval = 1
   
-  timeToImpact = 12
+  timeToImpact = 30
 end
 
 function game.update(dt)
@@ -56,7 +56,10 @@ end
 
 function game.keypressed(key)
   if key == "space" then
-    -- do a barrel roll!
+    
+    local dir = 1
+    if love.math.random(0, 1) == 1 then dir = -1 end
+    player:dodge(dir)
   elseif key == "escape" then
     love.event.quit(0)
   end

@@ -2,6 +2,7 @@ game = {}
 
 function game.init()  
   player = Player()
+  explosion = Animation()
   
   asteroids = {}
   
@@ -23,10 +24,9 @@ function game.update(dt)
     a:update(dt)
     if a.destroyable then table.remove(asteroids, i) end
     
-    if (collision(player, a)) then 
-      love.timer.sleep(0.5)
-      
-      --startGameOver()
+    if (collision(player, a)) then
+      collided_asteroid_index = i
+      startGameOver()
     end
   end
   

@@ -3,6 +3,8 @@ io.stdout:setvbuf("no")
 SCREEN_WIDTH = love.graphics.getWidth()
 SCREEN_HEIGHT = love.graphics.getHeight()
 
+print (SCREEN_WIDTH)
+
 -- you're shooting yourself out of a cannon at the moon!
 -- you're going straight up
 -- asteroids and other space ships are in your way/floating around/hurtling towards you
@@ -15,6 +17,7 @@ function love.load()
   require("src/menu")
   require("src/game")
   require("src/game_over")
+  require("src/animation")
   require("src/player")
   require("src/asteroid")
   

@@ -1,12 +1,12 @@
 game = {}
 
 function game.init()  
-  player = Player(6)
+  player = Player()
   
   asteroids = {}
   
   asteroidSpawnTimer = 0.5
-  asteroidSpawnInterval = 1
+  asteroidSpawnInterval = 0.5
   
   timeToImpact = 30
 end
@@ -55,10 +55,8 @@ function game.draw()
 end
 
 function game.keypressed(key)
-  if key == "space" then    
-    local dir = 1
-    if love.math.random(0, 1) == 1 then dir = -1 end
-    player:dodge(dir)
+  if key == "space" then
+    player:dodge()
   elseif key == "escape" then
     love.event.quit(0)
   end

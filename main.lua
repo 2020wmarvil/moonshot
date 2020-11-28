@@ -20,9 +20,6 @@ function love.load()
   
   love.graphics.setBackgroundColor(0, 0, 0)
   
-  channels = 11
-  channel_width = SCREEN_WIDTH / channels
-  
   startMenu()
 end
 

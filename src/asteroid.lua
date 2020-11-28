@@ -2,7 +2,7 @@ Asteroid = Object:extend()
 
 function Asteroid:new(image)
   self.x = love.math.random(0, SCREEN_WIDTH)
-  self.y = 0
+  self.y = -50
   self.image = image
   self.width = self.image:getWidth()
   self.height = self.image:getHeight()
@@ -11,7 +11,7 @@ function Asteroid:new(image)
   if love.math.random(1, 2) == 2 then self.rotation_rate = self.rotation_rate * -1 end
   self.destroyable = false  
   
-  self.bb_off = math.floor(self.width / 10)
+  self.bb_off = math.floor(self.width / 7)
   self.bb = {}
   self:updateBB()
 end

@@ -51,8 +51,5 @@ function startGameOver()
 end
 
 function collision(r1, r2)
-  return r1.x < r2.x + r2.width 
-    and r1.x + r1.width > r2.x 
-    and r1.y < r2.y + r2.height 
-    and r1.y + r1.height > r2.y
+  return r1.bb.x1 < r2.bb.x2 and r1.bb.x2 > r2.bb.x1 and r1.bb.y1 < r2.bb.y2 and r1.bb.y2 > r2.bb.y1
 end

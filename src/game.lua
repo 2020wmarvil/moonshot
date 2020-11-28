@@ -24,7 +24,7 @@ function game.update(dt)
     if a.destroyable then table.remove(asteroids, i) end
     
     if (collision(player, a)) then 
-      --love.timer.sleep(0.5)
+      love.timer.sleep(0.5)
       
       --startGameOver()
     end
@@ -55,8 +55,7 @@ function game.draw()
 end
 
 function game.keypressed(key)
-  if key == "space" then
-    
+  if key == "space" then    
     local dir = 1
     if love.math.random(0, 1) == 1 then dir = -1 end
     player:dodge(dir)

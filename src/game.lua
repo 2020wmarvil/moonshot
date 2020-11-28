@@ -24,9 +24,9 @@ function game.update(dt)
     if a.destroyable then table.remove(asteroids, i) end
     
     if (collision(player, a)) then 
-      love.timer.sleep(0.5)
+      --love.timer.sleep(0.5)
       
-      startGameOver()
+      --startGameOver()
     end
   end
   

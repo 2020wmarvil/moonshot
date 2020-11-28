@@ -3,7 +3,7 @@ Asteroid = Object:extend()
 function Asteroid:new(image)
   self.x = love.math.random(0, SCREEN_WIDTH)
   self.y = 0
-  self.image = love.graphics.newImage(image)
+  self.image = image
   self.width = self.image:getWidth()
   self.height = self.image:getHeight()
   self.destroyable = false
@@ -20,6 +20,7 @@ function Asteroid:draw()
 end
 
 function spawnAsteroid()
-  a = Asteroid("assets/sheep.png")
-  return a
+  local random = love.math.random(1, #asteroid_images)
+  local asteroid = Asteroid(asteroid_images[random])
+  return asteroid
 end

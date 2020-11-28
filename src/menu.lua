@@ -1,6 +1,9 @@
 menu = {}
 
 function menu.init()
+  asteroid_images = {}
+  table.insert(asteroid_images, love.graphics.newImage("assets/asteroid1.png"))
+  table.insert(asteroid_images, love.graphics.newImage("assets/asteroid2.png"))
 end
 
 function menu.update(dt)

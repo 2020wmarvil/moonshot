@@ -15,8 +15,12 @@ function Player:new()
   self:updateBB()
 end
 
-function Player:update(dt)  
-  self.x = self.x + self.speed * self.direction * dt
+function Player:update(dt)
+  if not player_move_vertical then
+    self.x = self.x + self.speed * self.direction * dt
+  else
+    self.y = self.y - moon_speed * dt
+  end
   
   self:updateBB()
 end

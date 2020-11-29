@@ -17,9 +17,11 @@ function love.load()
   require("src/menu")
   require("src/game")
   require("src/game_over")
+  require("src/game_won")
   require("src/animation")
   require("src/player")
   require("src/asteroid")
+  require("src/moon")
   
   love.graphics.setBackgroundColor(0, 0, 0)
   
@@ -48,6 +50,14 @@ function startGameOver()
   love.update = game_over.update
   love.draw = game_over.draw
   love.keypressed = game_over.keypressed
+end
+
+function startGameWon()
+  game_won.init()
+  
+  love.update = game_won.update
+  love.draw = game_won.draw
+  love.keypressed = game_won.keypressed
 end
 
 function collision(r1, r2)

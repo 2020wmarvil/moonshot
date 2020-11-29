@@ -1,5 +1,7 @@
 Asteroid = Object:extend()
 
+asteroid_speed = 100
+
 function Asteroid:new(image)
   self.x = love.math.random(0, SCREEN_WIDTH)
   self.y = -50
@@ -17,7 +19,7 @@ function Asteroid:new(image)
 end
 
 function Asteroid:update(dt)
-  self.y = self.y + 100 * dt
+  self.y = self.y + asteroid_speed * dt
   self:updateBB()
   
   self.rotation = self.rotation + self.rotation_rate * dt

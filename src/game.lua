@@ -1,21 +1,26 @@
 game = {}
 
 function game.init()  
-  player = Player()
+  player = Player()  
+  player_move_vertical = false
+  
   explosion = Animation()
+  explosion.frame = 1
+  explosion.time = 0
   
   asteroids = {}
   
   asteroidSpawnTimer = 0.5
   asteroidSpawnInterval = 0.5
   
-  timeToImpact = 30
+  timeToImpact = 10
+  winTime = 1
 end
 
 function game.update(dt)
   timeToImpact = timeToImpact - dt
-  if timeToImpact < 0 then
-    --startGameWon()
+  if timeToImpact < winTime then
+    startGameWon()
   end
   
   player:update(dt)
@@ -31,7 +36,7 @@ function game.update(dt)
   end
   
   asteroidSpawnTimer = asteroidSpawnTimer + dt
-  if asteroidSpawnTimer > asteroidSpawnInterval then
+  if asteroidSpawnTimer > asteroidSpawnInterval and timeToImpact > (SCREEN_HEIGHT / asteroid_speed) + winTime then
     table.insert(asteroids, spawnAsteroid())
     asteroidSpawnTimer = 0
   end  

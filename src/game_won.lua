@@ -7,10 +7,17 @@ function game_won.init()
   moon = Moon()
 end
 
-function game_won.update(dt)  
+function game_won.update(dt)
   timeToImpact = timeToImpact - dt
   if timeToImpact < 0 then
     timeToImpact = 0
+  end
+  
+  if not exploding and not finished then
+    for i,p in ipairs(planets) do
+      p:update(dt)
+      if p.destroyable then table.remove(planets, i) end
+    end
   end
   
   for i,a in ipairs(asteroids) do
@@ -37,7 +44,11 @@ function game_won.update(dt)
   end
 end
 
-function game_won.draw()
+function game_won.draw()  
+  for i,p in ipairs(planets) do
+    p:draw()
+  end  
+  
   if explosion.frame < 3 then
     player:draw()
   end

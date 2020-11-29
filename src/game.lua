@@ -17,6 +17,11 @@ function game.update(dt)
   
   player:update(dt)
   
+  for i,p in ipairs(planets) do
+    p:update(dt)
+    if p.destroyable then table.remove(planets, i) end
+  end
+  
   for i,a in ipairs(asteroids) do
     a:update(dt)
     if a.destroyable then table.remove(asteroids, i) end
@@ -31,12 +36,22 @@ function game.update(dt)
   if asteroidSpawnTimer > asteroidSpawnInterval and timeToImpact > (SCREEN_HEIGHT / asteroid_speed) + winTime then
     table.insert(asteroids, spawnAsteroid())
     asteroidSpawnTimer = 0
+  end
+  
+  planetSpawnTimer = planetSpawnTimer + dt
+  if planetSpawnTimer > planetSpawnInterval then
+    table.insert(planets, spawnPlanet())
+    planetSpawnTimer = 0
   end  
 end
 
-function game.draw()
+function game.draw()  
+  for i,p in ipairs(planets) do
+    p:draw()
+  end  
+  
   player:draw()
-    
+  
   for i,a in ipairs(asteroids) do
     a:draw()
   end

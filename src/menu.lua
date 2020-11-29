@@ -24,15 +24,16 @@ function menu.init()
   table.insert(planet_images, love.graphics.newImage("assets/planet1.png"))
   table.insert(planet_images, love.graphics.newImage("assets/planet2.png"))
   table.insert(planet_images, love.graphics.newImage("assets/planet3.png"))
+  table.insert(planet_images, love.graphics.newImage("assets/planet4.png"))
   
   asteroidSpawnTimer = 0.5
   asteroidSpawnInterval = 0.5
   
-  planetSpawnTimer = 6
-  planetSpawnInterval = 9
+  planetSpawnTimer = 0.5
+  planetSpawnInterval = 3
 end
 
-function menu.update(dt)  
+function menu.update(dt)
   player:update(dt)
     
   for i,p in ipairs(planets) do
@@ -58,7 +59,7 @@ function menu.update(dt)
   end  
 end
 
-function menu.draw()   
+function menu.draw()
   for i,p in ipairs(planets) do
     p:draw()
   end  

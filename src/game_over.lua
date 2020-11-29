@@ -5,7 +5,7 @@ function game_over.init()
   exploding = true
 end
 
-function game_over.update(dt)
+function game_over.update(dt)  
   if exploding then
     explosion.time = explosion.time + dt
     if explosion.time > explosion.time_per_frame then
@@ -15,7 +15,11 @@ function game_over.update(dt)
   end
 end
 
-function game_over.draw()
+function game_over.draw() 
+  for i,p in ipairs(planets) do
+    p:draw()
+  end
+  
   if explosion.frame < 3 then
     player:draw()
     asteroids[collided_asteroid_index]:draw()

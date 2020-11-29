@@ -1,8 +1,11 @@
-# moonshot
-A game in Love2D using only one button for input. 
+# Moonshot
 
-Blast off from earth in your spaceship and use any button to dodge asteroids. Can you make it all the way to the moon?
+Blast off from earth in your spaceship using the space bar to dodge asteroids! Can you make it all the way to the moon?
 
-This is a submission to the [1-Button Jam 2020](https://itch.io/jam/1-button-jam-2020 "1-Button Jam 2020") and the [Game Off 2020](https://itch.io/jam/game-off-2020 "Game Off 2020") game jams.
+This game was developed in Lua using the Love2D framework. It was submitted to the [1-Button Jam 2020](https://itch.io/jam/1-button-jam-2020 "1-Button Jam 2020") and the [Game Off 2020](https://itch.io/jam/game-off-2020 "Game Off 2020") game jams.
 
-Art and design by Brianna Ta. 
+Download available on [ydog.itch.io/moonshot](https://ydog.itch.io/moonshot "Moonshot store page")
+
+Programming by Wyatt Marvil - Art and design by Brianna Ta.
+
+Music is Frag Out by DJ ASSASS1N

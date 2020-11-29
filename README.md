@@ -1,5 +1,7 @@
 # Moonshot
 
+![Title Screen](https://img.itch.zone/aW1hZ2UvODM3MTUzLzQ2OTI2NTYucG5n/original/Jf0zbU.png)
+
 Blast off from earth in your spaceship using the space bar to dodge asteroids! Can you make it all the way to the moon?
 
 This game was developed in Lua using the Love2D framework. It was submitted to the [1-Button Jam 2020](https://itch.io/jam/1-button-jam-2020 "1-Button Jam 2020") and the [Game Off 2020](https://itch.io/jam/game-off-2020 "Game Off 2020") game jams.

@@ -58,7 +58,11 @@ function game_won.update(dt)
   end
 end
 
-function game_won.draw()  
+function game_won.draw() 
+  for i,s in ipairs(stars) do
+    s:draw()
+  end
+  
   for i,p in ipairs(planets) do
     p:draw()
   end  

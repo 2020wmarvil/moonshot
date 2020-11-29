@@ -7,16 +7,27 @@ function menu.init()
   player_move_vertical = false
   player_move_down = false
   
+  asteroids = {}
   asteroidSpawnTimer = 0.5
-  asteroidSpawnInterval = 10.5
+  asteroidSpawnInterval = 0.5
   
+  planets = {}
   planetSpawnTimer = 6
   planetSpawnInterval = 9
+  
+  stars = {}
+  starSpawnTimer = 2.5
+  starSpawnInterval = 3
 end
 
 function menu.update(dt)
   player:update(dt)
-    
+  
+  for i,s in ipairs(stars) do
+    s:update(dt)
+    if s.destroyable then table.remove(stars, i) end
+  end
+  
   for i,p in ipairs(planets) do
     p:update(dt)
     if p.destroyable then table.remove(planets, i) end
@@ -37,13 +48,23 @@ function menu.update(dt)
   if planetSpawnTimer > planetSpawnInterval then
     table.insert(planets, spawnPlanet())
     planetSpawnTimer = 0
+  end
+  
+  starSpawnTimer = starSpawnTimer + dt
+  if starSpawnTimer > starSpawnInterval then
+    table.insert(stars, spawnStar())
+    starSpawnTimer = 0
   end  
 end
 
 function menu.draw()
+  for i,s in ipairs(stars) do
+    s:draw()
+  end
+  
   for i,p in ipairs(planets) do
     p:draw()
-  end  
+  end
   
   for i,a in ipairs(asteroids) do
     a:draw()

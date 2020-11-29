@@ -11,7 +11,28 @@ function Moon:new()
   self.y = -self.height
   
   self.bbs = {}
-  
+  self:generateBBs()
+end
+
+function Moon:update(dt)
+  if self.y < self.height / 2 then
+    self.y = self.y + moon_speed * dt
+    self:updateBBs(dt)
+  else player_move_vertical = true end
+end
+
+function Moon:draw()  
+  love.graphics.draw(self.image, self.x, self.y, math.pi, 1, 1, self.width / 2, self.height / 2)
+end
+
+function Moon:updateBBs(dt)
+  for i,bb in ipairs(self.bbs) do  
+    bb.y1 = bb.y1 + moon_speed * dt
+    bb.y2 = bb.y2 + moon_speed * dt
+  end
+end
+
+function Moon:generateBBs()  
   -- first row
   local bb1 = {}
   bb1.x1 = self.x - self.width / 2 + 30
@@ -85,28 +106,6 @@ function Moon:new()
   bb14.x2 = SCREEN_WIDTH - 255
   bb14.y2 = self.y + self.height * 7 / 16 - 15
   table.insert(self.bbs, bb14)  
-end
-
-function Moon:update(dt)
-  if self.y < self.height / 2 then
-    self.y = self.y + moon_speed * dt
-    self:updateBBs(dt)
-  else player_move_vertical = true end
-end
-
-function Moon:draw()  
-  love.graphics.draw(self.image, self.x, self.y, math.pi, 1, 1, self.width / 2, self.height / 2)
-  
-  for i,bb in ipairs(self.bbs) do  
-    love.graphics.rectangle("line", bb.x1, bb.y1, bb.x2 - bb.x1, bb.y2 - bb.y1)
-  end
-end
-
-function Moon:updateBBs(dt)
-  for i,bb in ipairs(self.bbs) do  
-    bb.y1 = bb.y1 + moon_speed * dt
-    bb.y2 = bb.y2 + moon_speed * dt
-  end
 end
 
 function collide(player, bb)  

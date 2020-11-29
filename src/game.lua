@@ -48,6 +48,11 @@ function game.update(dt)
   player:update(dt)
   earth:update(dt)
   
+  for i,s in ipairs(stars) do
+    s:update(dt)
+    if s.destroyable then table.remove(stars, i) end
+  end
+  
   for i,p in ipairs(planets) do
     p:update(dt)
     if p.destroyable then table.remove(planets, i) end
@@ -75,6 +80,12 @@ function game.update(dt)
   if planetSpawnTimer > planetSpawnInterval then
     table.insert(planets, spawnPlanet())
     planetSpawnTimer = 0
+  end
+  
+  starSpawnTimer = starSpawnTimer + dt
+  if starSpawnTimer > starSpawnInterval then
+    table.insert(stars, spawnStar())
+    starSpawnTimer = 0
   end  
     
   timeToImpact = timeToImpact - dt
@@ -84,6 +95,10 @@ function game.update(dt)
 end
 
 function game.draw()  
+  for i,s in ipairs(stars) do
+    s:draw()
+  end
+  
   for i,p in ipairs(planets) do
     p:draw()
   end

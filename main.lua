@@ -3,9 +3,6 @@ io.stdout:setvbuf("no")
 SCREEN_WIDTH = love.graphics.getWidth()
 SCREEN_HEIGHT = love.graphics.getHeight()
 
--- add stars
--- prevent player from leaving the screen
-
 function love.load()
   love.math.setRandomSeed(love.timer.getTime())
 
@@ -18,6 +15,7 @@ function love.load()
   require("src/player")
   require("src/asteroid")
   require("src/planet")
+  require("src/star")
   require("src/moon")
   require("src/earth")
   
@@ -66,7 +64,6 @@ function startGameWon()
 end
 
 function load_images()
-  asteroids = {}    
   asteroid_images = {}
   table.insert(asteroid_images, love.graphics.newImage("assets/asteroid1.png"))
   table.insert(asteroid_images, love.graphics.newImage("assets/asteroid2.png"))
@@ -79,7 +76,6 @@ function load_images()
   table.insert(asteroid_images, love.graphics.newImage("assets/asteroid9.png"))
   table.insert(asteroid_images, love.graphics.newImage("assets/asteroid10.png"))
   
-  planets = {}
   planet_images = {}
   table.insert(planet_images, love.graphics.newImage("assets/planet1.png"))
   table.insert(planet_images, love.graphics.newImage("assets/planet2.png"))

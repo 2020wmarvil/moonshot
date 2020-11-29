@@ -17,7 +17,11 @@ function game_over.update(dt)
   end
 end
 
-function game_over.draw() 
+function game_over.draw()
+  for i,s in ipairs(stars) do
+    s:draw()
+  end
+  
   for i,p in ipairs(planets) do
     p:draw()
   end

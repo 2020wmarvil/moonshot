@@ -3,6 +3,9 @@ io.stdout:setvbuf("no")
 SCREEN_WIDTH = love.graphics.getWidth()
 SCREEN_HEIGHT = love.graphics.getHeight()
 
+-- add stars
+-- prevent player from leaving the screen
+
 function love.load()
   love.math.setRandomSeed(love.timer.getTime())
 
@@ -18,7 +21,7 @@ function love.load()
   require("src/moon")
   require("src/earth")
   
-  love.graphics.setBackgroundColor(0, 0, 0)  
+  love.graphics.setBackgroundColor(0, 0, 0)
   
   load_images()
   load_audio()

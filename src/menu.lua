@@ -5,6 +5,7 @@ function menu.init()
   
   player = Player()  
   player_move_vertical = false
+  player_move_down = false
   
   asteroids = {}    
   asteroid_images = {}
@@ -29,8 +30,8 @@ function menu.init()
   asteroidSpawnTimer = 0.5
   asteroidSpawnInterval = 0.5
   
-  planetSpawnTimer = 0.5
-  planetSpawnInterval = 3
+  planetSpawnTimer = 6
+  planetSpawnInterval = 9
 end
 
 function menu.update(dt)

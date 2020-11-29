@@ -7,7 +7,6 @@ function Player:new()
   
   self.x = SCREEN_WIDTH / 2
   self.y = earth.y - earth.height / 2 - self.height / 2 + 30
-  --self.y = SCREEN_HEIGHT-100
   
   self.direction = 0
   self.speed = self.width
@@ -18,6 +17,12 @@ function Player:new()
 end
 
 function Player:update(dt)
+  if player_move_down then
+    self.y = self.y + (earth_speed/2) * dt
+    
+    if self.y > SCREEN_HEIGHT - 100 then player_move_down = false end
+  end
+    
   if not player_move_vertical then
     self.x = self.x + self.speed * self.direction * dt
   else
@@ -27,9 +32,9 @@ function Player:update(dt)
   self:updateBB()
 end
 
-function Player:draw()  
-  love.graphics.draw(self.image, self.x, self.y, 0, 1, 1, math.floor(self.width / 2), math.floor(self.height / 2))
-  --love.graphics.rectangle("line", self.bb.x1, self.bb.y1, self.bb.x2 - self.bb.x1, self.bb.y2 - self.bb.y1)
+function Player:draw()
+  local angle = 15
+  love.graphics.draw(self.image, self.x, self.y, self.direction * (360 - angle) * 180 / math.pi, 1, 1, math.floor(self.width / 2), math.floor(self.height / 2))
 end
 
 function Player:dodge()

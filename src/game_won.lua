@@ -4,6 +4,8 @@ function game_won.init()
   exploding = false
   finished = false
   
+  player.direction = 0
+  
   moon = Moon()
 end
 

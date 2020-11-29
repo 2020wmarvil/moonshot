@@ -7,26 +7,6 @@ function menu.init()
   player_move_vertical = false
   player_move_down = false
   
-  asteroids = {}    
-  asteroid_images = {}
-  table.insert(asteroid_images, love.graphics.newImage("assets/asteroid1.png"))
-  table.insert(asteroid_images, love.graphics.newImage("assets/asteroid2.png"))
-  table.insert(asteroid_images, love.graphics.newImage("assets/asteroid3.png"))
-  table.insert(asteroid_images, love.graphics.newImage("assets/asteroid4.png"))
-  table.insert(asteroid_images, love.graphics.newImage("assets/asteroid5.png"))
-  table.insert(asteroid_images, love.graphics.newImage("assets/asteroid6.png"))
-  table.insert(asteroid_images, love.graphics.newImage("assets/asteroid7.png"))
-  table.insert(asteroid_images, love.graphics.newImage("assets/asteroid8.png"))
-  table.insert(asteroid_images, love.graphics.newImage("assets/asteroid9.png"))
-  table.insert(asteroid_images, love.graphics.newImage("assets/asteroid10.png"))
-  
-  planets = {}
-  planet_images = {}
-  table.insert(planet_images, love.graphics.newImage("assets/planet1.png"))
-  table.insert(planet_images, love.graphics.newImage("assets/planet2.png"))
-  table.insert(planet_images, love.graphics.newImage("assets/planet3.png"))
-  table.insert(planet_images, love.graphics.newImage("assets/planet4.png"))
-  
   asteroidSpawnTimer = 0.5
   asteroidSpawnInterval = 0.5
   

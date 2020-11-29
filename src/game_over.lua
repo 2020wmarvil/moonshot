@@ -3,6 +3,8 @@ game_over = {}
 function game_over.init() 
   explosion.time = 0
   exploding = true
+  
+  explosion_sound:play()
 end
 
 function game_over.update(dt)  

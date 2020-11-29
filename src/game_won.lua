@@ -1,6 +1,7 @@
 game_won = {}
 
 function game_won.init() 
+  started_explosion = false
   exploding = false
   finished = false
   
@@ -28,6 +29,11 @@ function game_won.update(dt)
   end  
   
   if exploding then
+    if not started_explosion then
+      explosion_sound:play()
+      started_explosion = true
+    end
+    
     explosion.time = explosion.time + dt
     if explosion.time > explosion.time_per_frame then
       exploding = explosion:advance_frame()

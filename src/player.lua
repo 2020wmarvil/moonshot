@@ -1,11 +1,13 @@
 Player = Object:extend()
 
-function Player:new()  
-  self.x = SCREEN_WIDTH / 2
-  self.y = SCREEN_HEIGHT-100  
+function Player:new()
   self.image = love.graphics.newImage("assets/player.png")
   self.width = self.image:getWidth()
-  self.height = self.image:getHeight()
+  self.height = self.image:getHeight()  
+  
+  self.x = SCREEN_WIDTH / 2
+  self.y = earth.y - earth.height / 2 - self.height / 2 + 30
+  --self.y = SCREEN_HEIGHT-100
   
   self.direction = 0
   self.speed = self.width

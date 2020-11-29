@@ -1,17 +1,9 @@
 game = {}
 
 function game.init()  
-  player = Player()  
-  player_move_vertical = false
-  
   explosion = Animation()
   explosion.frame = 1
   explosion.time = 0
-  
-  asteroids = {}
-  
-  asteroidSpawnTimer = 0.5
-  asteroidSpawnInterval = 0.5
   
   timeToImpact = 10
   winTime = 1

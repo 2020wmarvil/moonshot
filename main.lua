@@ -21,7 +21,9 @@ function love.load()
   require("src/animation")
   require("src/player")
   require("src/asteroid")
+  require("src/planet")
   require("src/moon")
+  require("src/earth")
   
   love.graphics.setBackgroundColor(0, 0, 0)
   

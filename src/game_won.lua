@@ -52,7 +52,7 @@ function game_won.update(dt)
     player:update(dt)
   end
   
-  if not exploding and not finished and collision(player, moon) then
+  if not exploding and not finished and moon:collision(player) then
     exploding = true
     explosion.time = 0
   end
@@ -81,7 +81,7 @@ function game_won.draw()
   if finished then
     love.graphics.setNewFont(20)
     local font = love.graphics.newFont(20)
-    local text = "Congrats!"
+    local text = "Congrats, you got to the moon!"
     love.graphics.print(text, math.floor((SCREEN_WIDTH-font:getWidth(text))/2), math.floor((SCREEN_HEIGHT-font:getHeight())/2) - 10)
     
     love.graphics.setNewFont(16)
@@ -93,7 +93,7 @@ function game_won.draw()
   if not finished then 
     love.graphics.setNewFont(20)
     local font = love.graphics.newFont(20)
-    local text = string.format("T-%02d", timeToImpact) .. "." .. math.floor(timeToImpact*10) % 10
+    local text = string.format("T-%02d", math.floor(timeToImpact)) .. "." .. math.floor(timeToImpact*10) % 10
     
     love.graphics.setColor(0.5, 0.5, 0)
     love.graphics.rectangle("fill", math.floor(SCREEN_WIDTH-font:getWidth(text)-15), math.floor(font:getHeight()-15), font:getWidth(text), font:getHeight(text))

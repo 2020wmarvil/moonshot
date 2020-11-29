@@ -8,7 +8,7 @@ function menu.init()
   player_move_down = false
   
   asteroidSpawnTimer = 0.5
-  asteroidSpawnInterval = 0.5
+  asteroidSpawnInterval = 10.5
   
   planetSpawnTimer = 6
   planetSpawnInterval = 9

@@ -1,6 +1,6 @@
 game = {}
 
-function game.init()  
+function game.init()
   player_move_down = true
   collideable = false
   show_instructions = true
@@ -29,16 +29,11 @@ function game.init()
   invulnerability_duration = 3.5
   invulnerability_time = 0
   
-  timeToImpact = 10
+  timeToImpact = 20
   winTime = 1
 end
 
 function game.update(dt)
-  timeToImpact = timeToImpact - dt
-  if timeToImpact < winTime then
-    startGameWon()
-  end
-  
   flames.time = flames.time + dt
   if flames.time > flames.time_per_frame then
     if not flames:advance_frame() then flames.frame = 1 end
@@ -81,6 +76,11 @@ function game.update(dt)
     table.insert(planets, spawnPlanet())
     planetSpawnTimer = 0
   end  
+    
+  timeToImpact = timeToImpact - dt
+  if timeToImpact < winTime then
+    startGameWon()
+  end
 end
 
 function game.draw()  
@@ -110,7 +110,7 @@ function game.draw()
   
   love.graphics.setNewFont(20)
   local font = love.graphics.newFont(20)
-  local text = string.format("T-%02d", timeToImpact) .. "." .. math.floor(timeToImpact*10) % 10
+  local text = string.format("T-%02d", math.floor(timeToImpact)) .. "." .. math.floor(timeToImpact*10) % 10
   
   love.graphics.setColor(0.5, 0.5, 0)
   love.graphics.rectangle("fill", math.floor(SCREEN_WIDTH-font:getWidth(text)-15), math.floor(font:getHeight()-15), font:getWidth(text), font:getHeight(text))

@@ -30,6 +30,14 @@ function Player:update(dt)
     self.y = self.y - moon_speed * dt
   end
   
+  if self.x + self.width / 2 > SCREEN_WIDTH then
+    self.x = SCREEN_WIDTH - self.width / 2
+    self.direction = 0
+  elseif self.x < self.width / 2 then
+    self.x = self.width / 2
+    self.direction = 0
+  end
+  
   self:updateBB()
 end
 
@@ -40,7 +48,7 @@ end
 
 function Player:dodge()
   if self.direction == 0 then 
-    if self.x < SCREEN_WIDTH / 2 then
+    if self.x == SCREEN_WIDTH - self.width / 2 then
       self.direction = -1
     else
       self.direction = 1

@@ -20,6 +20,7 @@ function love.load()
   require("src/earth")
   
   love.window.setTitle("Moonshot")
+  love.window.setIcon(love.image.newImageData("assets/planet4.png"))
 
   love.graphics.setBackgroundColor(0, 0, 0)
   

@@ -29,7 +29,7 @@ function game.init()
   invulnerability_duration = 3.5
   invulnerability_time = 0
   
-  timeToImpact = 5
+  timeToImpact = 45
   winTime = 1
 end
 

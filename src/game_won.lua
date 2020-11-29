@@ -92,13 +92,20 @@ function game_won.draw()
   if finished then
     love.graphics.setNewFont(20)
     local font = love.graphics.newFont(20)
-    local text = "Congrats, you got to the moon!"
+    local text = "you hit the moon!"
     love.graphics.print(text, math.floor((SCREEN_WIDTH-font:getWidth(text))/2), math.floor((SCREEN_HEIGHT-font:getHeight())/2) - 10)
     
     love.graphics.setNewFont(16)
     local subfont = love.graphics.newFont(16)
     local subtext = "hit space to play again!"
-    love.graphics.print(subtext, math.floor((SCREEN_WIDTH-subfont:getWidth(subtext))/2), math.floor((SCREEN_HEIGHT-subfont:getHeight())/2) + 10)
+    love.graphics.print(subtext, math.floor((SCREEN_WIDTH-subfont:getWidth(subtext))/2), math.floor((SCREEN_HEIGHT-subfont:getHeight())/2) + 15)
+    
+    love.graphics.setNewFont(20)
+    local credits_font = love.graphics.newFont(20)
+    local credits = "programming by wyatt marvil"
+    love.graphics.print(credits, 10, SCREEN_HEIGHT-credits_font:getHeight() - 10)
+    credits = "art and design by brianna ta"
+    love.graphics.print(credits, SCREEN_WIDTH-credits_font:getWidth(credits) - 10, SCREEN_HEIGHT-credits_font:getHeight() - 10)
   end
 end
 

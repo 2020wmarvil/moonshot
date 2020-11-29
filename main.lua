@@ -19,6 +19,8 @@ function love.load()
   require("src/moon")
   require("src/earth")
   
+  love.window.setTitle("Moonshot")
+
   love.graphics.setBackgroundColor(0, 0, 0)
   
   load_images()

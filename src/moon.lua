@@ -15,7 +15,7 @@ function Moon:new()
 end
 
 function Moon:update(dt)
-  if self.y < self.height / 2 then
+  if self.y < self.height / 2 - 3 then
     self.y = self.y + moon_speed * dt
     self:updateBBs(dt)
   else player_move_vertical = true end

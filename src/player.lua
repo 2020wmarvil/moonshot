@@ -7,6 +7,7 @@ function Player:new()
   
   self.x = SCREEN_WIDTH / 2
   self.y = earth.y - earth.height / 2 - self.height / 2 + 30
+  self.angle = 5
   
   self.direction = 0
   self.speed = self.width
@@ -34,7 +35,7 @@ end
 
 function Player:draw()
   local angle = 15
-  love.graphics.draw(self.image, self.x, self.y, self.direction * 15 * math.pi / 180, 1, 1, math.floor(self.width / 2), math.floor(self.height / 2))
+  love.graphics.draw(self.image, self.x, self.y, self.direction * self.angle * math.pi / 180, 1, 1, math.floor(self.width / 2), math.floor(self.height / 2))
 end
 
 function Player:dodge()

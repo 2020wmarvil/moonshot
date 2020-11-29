@@ -94,17 +94,9 @@ function game.draw()
   
   earth:draw()
   
-  local flamesX = player.x
+  local flamesX = player.x - player.direction * 4
   local flamesY = player.y + player.height / 2 - 10
-  local flamesAngle = 15 * math.pi / 180 * player.direction
-  
-  if player.direction == 1 then
-    flamesX = flamesX - 12
-    flamesY = flamesY - 2
-  elseif player.direction == -1 then    
-    flamesX = flamesX + 12
-    flamesY = flamesY - 2
-  end
+  local flamesAngle = player.angle * math.pi / 180 * player.direction
   
   flames:play(flamesX, flamesY, flamesAngle)
   player:draw()

@@ -36,7 +36,7 @@ function game_over.draw()
   end
   
   if exploding then 
-    explosion:play(player.x, player.y) 
+    explosion:play(player.x, player.y)
   else  
     love.graphics.setNewFont(20)
     local font = love.graphics.newFont(20)

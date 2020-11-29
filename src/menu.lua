@@ -16,8 +16,8 @@ function menu.init()
   planetSpawnInterval = 9
   
   stars = {}
-  starSpawnTimer = 2.5
-  starSpawnInterval = 3
+  starSpawnTimer = 1.5
+  starSpawnInterval = 2
 end
 
 function menu.update(dt)
@@ -41,19 +41,19 @@ function menu.update(dt)
   asteroidSpawnTimer = asteroidSpawnTimer + dt
   if asteroidSpawnTimer > asteroidSpawnInterval then
     table.insert(asteroids, spawnAsteroid())
-    asteroidSpawnTimer = 0
+    asteroidSpawnTimer = love.math.random(-0.2, 0.2)
   end  
   
   planetSpawnTimer = planetSpawnTimer + dt
   if planetSpawnTimer > planetSpawnInterval then
     table.insert(planets, spawnPlanet())
-    planetSpawnTimer = 0
+    planetSpawnTimer = love.math.random(-3, 3)
   end
   
   starSpawnTimer = starSpawnTimer + dt
   if starSpawnTimer > starSpawnInterval then
     table.insert(stars, spawnStar())
-    starSpawnTimer = 0
+    starSpawnTimer = love.math.random(-1, 1)
   end  
 end
 

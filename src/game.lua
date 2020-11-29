@@ -29,7 +29,7 @@ function game.init()
   invulnerability_duration = 3.5
   invulnerability_time = 0
   
-  timeToImpact = 20
+  timeToImpact = 45
   winTime = 1
 end
 
@@ -73,19 +73,19 @@ function game.update(dt)
   asteroidSpawnTimer = asteroidSpawnTimer + dt
   if asteroidSpawnTimer > asteroidSpawnInterval and timeToImpact > (SCREEN_HEIGHT / asteroid_speed) + winTime then
     table.insert(asteroids, spawnAsteroid())
-    asteroidSpawnTimer = 0
+    asteroidSpawnTimer = love.math.random(-0.2, 0.2)
   end
   
   planetSpawnTimer = planetSpawnTimer + dt
   if planetSpawnTimer > planetSpawnInterval then
     table.insert(planets, spawnPlanet())
-    planetSpawnTimer = 0
+    planetSpawnTimer = love.math.random(-3, 3)
   end
   
   starSpawnTimer = starSpawnTimer + dt
   if starSpawnTimer > starSpawnInterval then
     table.insert(stars, spawnStar())
-    starSpawnTimer = 0
+    starSpawnTimer = love.math.random(-1, 1)
   end  
     
   timeToImpact = timeToImpact - dt
@@ -95,6 +95,18 @@ function game.update(dt)
 end
 
 function game.draw()  
+  if show_instructions then
+    love.graphics.setNewFont(20)
+    local font = love.graphics.newFont(20)
+    local text = "hit space to dodge!"
+    love.graphics.print(text, math.floor((SCREEN_WIDTH-font:getWidth(text)) / 2), math.floor(20))
+  else
+    love.graphics.setNewFont(40)
+    local font = love.graphics.newFont(40)
+    local text = string.format("T-%02d", math.floor(timeToImpact)) .. "." .. math.floor(timeToImpact*10) % 10  
+    love.graphics.print(text, math.floor((SCREEN_WIDTH-font:getWidth(text))/2), math.floor((SCREEN_HEIGHT-font:getHeight())/2))
+  end
+  
   for i,s in ipairs(stars) do
     s:draw()
   end
@@ -114,23 +126,7 @@ function game.draw()
   local flamesAngle = player.angle * math.pi / 180 * player.direction
   
   flames:play(flamesX, flamesY, flamesAngle)
-  player:draw()
-  
-  if show_instructions then
-    love.graphics.setNewFont(20)
-    local font = love.graphics.newFont(20)
-    local text = "hit space to dodge!"
-    love.graphics.print(text, math.floor((SCREEN_WIDTH-font:getWidth(text)) / 2), math.floor(20))
-  end
-  
-  love.graphics.setNewFont(20)
-  local font = love.graphics.newFont(20)
-  local text = string.format("T-%02d", math.floor(timeToImpact)) .. "." .. math.floor(timeToImpact*10) % 10
-  
-  love.graphics.setColor(0.5, 0.5, 0)
-  love.graphics.rectangle("fill", math.floor(SCREEN_WIDTH-font:getWidth(text)-15), math.floor(font:getHeight()-15), font:getWidth(text), font:getHeight(text))
-  love.graphics.setColor(1, 1, 1)
-  love.graphics.print(text, math.floor(SCREEN_WIDTH-font:getWidth(text)-15), math.floor(font:getHeight()-15))
+  player:draw()  
 end
 
 function game.keypressed(key)

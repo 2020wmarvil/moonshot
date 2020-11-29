@@ -58,7 +58,14 @@ function game_won.update(dt)
   end
 end
 
-function game_won.draw() 
+function game_won.draw()  
+  if not finished then 
+    love.graphics.setNewFont(40)
+    local font = love.graphics.newFont(40)
+    local text = string.format("T-%02d", math.floor(timeToImpact)) .. "." .. math.floor(timeToImpact*10) % 10  
+    love.graphics.print(text, math.floor((SCREEN_WIDTH-font:getWidth(text))/2), math.floor((SCREEN_HEIGHT-font:getHeight())/2))
+  end
+  
   for i,s in ipairs(stars) do
     s:draw()
   end
@@ -92,17 +99,6 @@ function game_won.draw()
     local subfont = love.graphics.newFont(16)
     local subtext = "hit space to play again!"
     love.graphics.print(subtext, math.floor((SCREEN_WIDTH-subfont:getWidth(subtext))/2), math.floor((SCREEN_HEIGHT-subfont:getHeight())/2) + 10)
-  end
-  
-  if not finished then 
-    love.graphics.setNewFont(20)
-    local font = love.graphics.newFont(20)
-    local text = string.format("T-%02d", math.floor(timeToImpact)) .. "." .. math.floor(timeToImpact*10) % 10
-    
-    love.graphics.setColor(0.5, 0.5, 0)
-    love.graphics.rectangle("fill", math.floor(SCREEN_WIDTH-font:getWidth(text)-15), math.floor(font:getHeight()-15), font:getWidth(text), font:getHeight(text))
-    love.graphics.setColor(1, 1, 1)
-    love.graphics.print(text, math.floor(SCREEN_WIDTH-font:getWidth(text)-15), math.floor(font:getHeight()-15))
   end
 end
 

@@ -21,6 +21,12 @@ function game_won.update(dt)
       p:update(dt)
       if p.destroyable then table.remove(planets, i) end
     end
+  
+    flames.time = flames.time + dt
+    if flames.time > flames.time_per_frame then
+      if not flames:advance_frame() then flames.frame = 1 end
+      flames.time = 0
+    end
   end
   
   for i,a in ipairs(asteroids) do
@@ -57,7 +63,8 @@ function game_won.draw()
     p:draw()
   end  
   
-  if explosion.frame < 3 then
+  if explosion.frame < 3 then    
+    flames:play(player.x, player.y + player.height / 2 - 10)
     player:draw()
   end
     

@@ -5,9 +5,26 @@ function game.init()
   collideable = false
   show_instructions = true
   
-  explosion = Animation()
+  local explosion_frames = {}
+  table.insert(explosion_frames, love.graphics.newImage("assets/explosion1/frame1.png"))
+  table.insert(explosion_frames, love.graphics.newImage("assets/explosion1/frame2.png"))
+  table.insert(explosion_frames, love.graphics.newImage("assets/explosion1/frame3.png"))
+  table.insert(explosion_frames, love.graphics.newImage("assets/explosion1/frame4.png"))
+  table.insert(explosion_frames, love.graphics.newImage("assets/explosion1/frame5.png"))
+  
+  local flames_frames = {}
+  table.insert(flames_frames, love.graphics.newImage("assets/flames/frame1.png"))
+  table.insert(flames_frames, love.graphics.newImage("assets/flames/frame2.png"))
+  table.insert(flames_frames, love.graphics.newImage("assets/flames/frame3.png"))
+  table.insert(flames_frames, love.graphics.newImage("assets/flames/frame4.png"))
+  
+  explosion = Animation(explosion_frames)
   explosion.frame = 1
   explosion.time = 0
+  
+  flames = Animation(flames_frames)
+  flames.frame = 1
+  flames.time = 0
   
   invulnerability_duration = 3.5
   invulnerability_time = 0
@@ -20,6 +37,12 @@ function game.update(dt)
   timeToImpact = timeToImpact - dt
   if timeToImpact < winTime then
     startGameWon()
+  end
+  
+  flames.time = flames.time + dt
+  if flames.time > flames.time_per_frame then
+    if not flames:advance_frame() then flames.frame = 1 end
+    flames.time = 0
   end
   
   invulnerability_time = invulnerability_time + dt
@@ -60,18 +83,31 @@ function game.update(dt)
   end  
 end
 
-function game.draw()
-  earth:draw()
-  
+function game.draw()  
   for i,p in ipairs(planets) do
     p:draw()
-  end  
-  
-  player:draw()
+  end
   
   for i,a in ipairs(asteroids) do
     a:draw()
   end
+  
+  earth:draw()
+  
+  local flamesX = player.x
+  local flamesY = player.y + player.height / 2 - 10
+  local flamesAngle = 15 * math.pi / 180 * player.direction
+  
+  if player.direction == 1 then
+    flamesX = flamesX - 12
+    flamesY = flamesY - 2
+  elseif player.direction == -1 then    
+    flamesX = flamesX + 12
+    flamesY = flamesY - 2
+  end
+  
+  flames:play(flamesX, flamesY, flamesAngle)
+  player:draw()
   
   if show_instructions then
     love.graphics.setNewFont(20)

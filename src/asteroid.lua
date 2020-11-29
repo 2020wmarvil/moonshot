@@ -28,8 +28,7 @@ function Asteroid:update(dt)
 end
 
 function Asteroid:draw()  
-  love.graphics.draw(self.image, self.x, self.y, math.deg(self.rotation), 1, 1, self.width / 2, self.height / 2)  
-  love.graphics.rectangle("line", self.bb.x1, self.bb.y1, self.bb.x2 - self.bb.x1, self.bb.y2 - self.bb.y1)
+  love.graphics.draw(self.image, self.x, self.y, math.deg(self.rotation), 1, 1, self.width / 2, self.height / 2)
 end
 
 function Asteroid:updateBB()

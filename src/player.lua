@@ -34,7 +34,7 @@ end
 
 function Player:draw()
   local angle = 15
-  love.graphics.draw(self.image, self.x, self.y, self.direction * (360 - angle) * 180 / math.pi, 1, 1, math.floor(self.width / 2), math.floor(self.height / 2))
+  love.graphics.draw(self.image, self.x, self.y, self.direction * 15 * math.pi / 180, 1, 1, math.floor(self.width / 2), math.floor(self.height / 2))
 end
 
 function Player:dodge()

@@ -1,12 +1,7 @@
 Animation = Object:extend()
 
-function Animation:new()  
-  self.frames = {}
-  table.insert(self.frames, love.graphics.newImage("assets/explosion1/frame1.png"))
-  table.insert(self.frames, love.graphics.newImage("assets/explosion1/frame2.png"))
-  table.insert(self.frames, love.graphics.newImage("assets/explosion1/frame3.png"))
-  table.insert(self.frames, love.graphics.newImage("assets/explosion1/frame4.png"))
-  table.insert(self.frames, love.graphics.newImage("assets/explosion1/frame5.png"))
+function Animation:new(frames)  
+  self.frames = frames
   
   self.width = self.frames[1]:getWidth()
   self.height = self.frames[1]:getHeight()
@@ -18,6 +13,10 @@ end
 
 function Animation:play(x, y)
   love.graphics.draw(self.frames[self.frame], x, y, 0, 1, 1, math.floor(self.width / 2), math.floor(self.height / 2))
+end
+
+function Animation:play(x, y, angle)
+  love.graphics.draw(self.frames[self.frame], x, y, angle, 1, 1, math.floor(self.width / 2), math.floor(self.height / 2))
 end
 
 function Animation:advance_frame()

@@ -24,7 +24,7 @@ function love.load()
   load_audio()
   
   music:play()
-  music:setVolume(0.4)
+  music:setVolume(0.25)
   music:setLooping(true)
   
   startMenu()

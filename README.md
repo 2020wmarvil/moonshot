@@ -1,6 +1,6 @@
 # Moonshot
 
-[![Gameplay Trailer](https://img.itch.zone/aW1hZ2UvODM3MTUzLzQ2OTMwNDAucG5n/original/cR0%2B24.png)](https://www.youtube.com/watch?v=jG3Q0PRYJn4)
+[![Gameplay Trailer](https://img.itch.zone/aW1hZ2UvODM3MTUzLzQ2OTMwNDAucG5n/original/cR0%2B24.png)](https://www.youtube.com/watch?v=3nOYwP9eUZ4&feature=youtu.be)
 
 Blast off from earth in your spaceship using the space bar to dodge asteroids! Can you make it all the way to the moon?
 
